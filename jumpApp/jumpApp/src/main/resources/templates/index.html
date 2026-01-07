@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML Table Example</title>
+<style>
+  table, th, td {
+    border: 1px solid black; /* Sets the border for table, header, and data cells */
+    border-collapse: collapse; /* Merges the borders into a single line */
+    padding: 8px; /* Adds space between the content and cell borders */
+    text-align: left; /* Aligns text to the left */
+  }
+  table {
+    width: 50%; /* Sets the width of the table */
+    margin-top: 20px; /* Adds some space above the table */
+  }
+  th {
+    background-color: #f2f2f2; /* Adds a light gray background to header cells */
+  }
+</style>
+</head>
+<body>
+
+<h2>currency converter</h2>
+
+<form method="post" action="/convert">
+
+	<input type="text" name="amount" placeholder="USD amount"/>
+	<select name="currency">
+		<option value="AED">AED</option>
+		<option value="CAD">CAD</option>
+		<option value="INR">INR</option>
+		<option value="AFN">AFN</option>
+		
+	</select>
+<button type="submit"> convert</button>
+</form>
+
+<p th:if="${result}">
+ converted Amount : <b th:text="${result}"></b>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>USD</th>
+      <th>Currency</th>
+       <th>Rate</th>
+        <th>Converted</th>
+         <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c: ${history}">
+    	<td th:text="${c.usdAmount}"> </td>
+    	<td th:text="${c.targetCurrency}"> </td>
+    	<td th:text="${c.rate}"> </td>
+    	<td th:text="${c.convertedAmount}"> </td>
+    	<td th:text="${c.createdAt}"> </td>
+    	
+    	
+  </tbody>
+</table>
+
+</body>
+</html>
+
